@@ -1,6 +1,7 @@
 import React from "react";
 
 const Name = ({
+                  currentUser,
                   firstName,
                   lastName,
                   age = null,
@@ -11,6 +12,10 @@ const Name = ({
         backgroundColor: "wheat",
         border: "1px solid",
         padding: '16px'}}>
+        {/*<tr>*/}
+        {/*    <td>Current user</td>*/}
+        {/*    <td>{currentUser}</td>*/}
+        {/*</tr>*/}
         <tr>
             <td>First name</td>
             <td>{firstName}</td>
