@@ -1,3 +1,7 @@
 .App {
   text-align: center;
 }
+
+.tab-active{
+  border: 1px solid;
+}

@@ -1,95 +1,61 @@
 import './App.css';
-import Greeting from "../src/components/greeting/Greeting";
-import RandomText from "./components/randomText/RandomText";
-import Name from "./components/name/Name";
-import UserName from "./components/userName/UserName";
-import ExampleImage from "./img/modern-abstract-geometric-background-free-vector.jpg";
-import SvgImage from "./img/1664369598poker-bet-svgrepo-com.svg"
-import { ReactComponent as SvgComponent } from "./img/1664369598poker-bet-svgrepo-com.svg";
 import {listOfUsers} from "./constants/constants";
+import UserCard from "./components/userCard/UserCard";
+import FilterList from "./components/filterList/FilterList";
+import {useReducer, useState} from "react";
+import FilteredList from "./components/filteredList/FilteredList";
 import Counter from "./components/counter/Counter";
-import Search from "./components/search/Search";
+import UsersSearch from "./components/usersSearch/UsersSearch";
 
 // single line comment
 /*
 * sfdf
 * fdsf
 * */
+
+const reducer = (state, action) => {
+    switch(action.type){
+        case 'search-name':
+            return listOfUsers.filter(user => user.firstName.toString().toLowerCase().includes(action.data.toLowerCase()));
+        case 'search-surname':
+            return listOfUsers.filter(user => user.lastName.toString().toLowerCase().includes(action.data.toLowerCase()));
+        case 'search-age':
+            return listOfUsers.filter(user => user.age.toString().toLowerCase().includes(action.data.toLowerCase()));
+        case 'search-city':
+            return listOfUsers.filter(user => user.city.toString().toLowerCase().includes(action.data.toLowerCase()));
+        default:
+            return listOfUsers;
+    }
+}
+
 function App() {
-
-  console.log(listOfUsers.some(user => user.city === "Budva"))
-
-  console.log(listOfUsers.filter(user => user.age >= 28))
-
-  const newListOfUsers = [...listOfUsers];
-
-  // console.log(newListOfUsers)
-  // console.log(newListOfUsers.shift())
-  // console.log(newListOfUsers)
-
-  newListOfUsers.push({
-    id: 5,
-    firstName: 'Dimitrije',
-    lastName: 'Nikolic',
-    age: 55,
-    city: 'Donja Gorica'
-  })
-
-  console.log(newListOfUsers)
-
-  const names = ['Edina', 'Ana', 'Marko']
-  const names2 = ['Nemanja', 'Dimitrije']
-  console.log(names.join(','))
-  console.log([...names, ...names2])
-
+    const [tabInView, setTabInView] = useState("firstName");
+    const [list, dispatch] = useReducer(reducer, [])
 
   return (
     <div className="App">
-      <Counter/>
-      <Search/>
-    <Greeting/>
-      <RandomText/>
-      {
-        /*
-        * fgfgf
-        * */
-      }
-      <Name currentUser={<UserName/>}
-            firstName="Ana"
-            lastName="Miljkovic"/>
-      <img src="images/download.jpg" alt=""/>
-      <img src="images/download.jpg" alt="Example 1"/>
-      <img src="example.jpg" alt="Example 2"/>
-      <img src={ExampleImage} alt="Example 3" style={{width: '150px'}}/>
-      <img src={SvgImage} alt="Example 4" style={{width: '150px'}}/>
-      {/*<SvgComponent/>*/}
-      <div style={{display: 'flex', gap: '5px'}}>
-      {listOfUsers.map((user, index, arr) => {
-        return <Name key={user.id}
-                     firstName={user.firstName}
-                     lastName={user.lastName}
-                     age={user.age}
-                     city={user.city}/>
-      })}
-      </div>
-        <div>
-          User from Budva exists? {listOfUsers.some(user => user.city === "Budva") ? "Yes" : "No"}
+        <Counter/>
+      <UserCard firstName="Nemanja"
+        lastName="Nemanjic"
+        age={50}
+        city="Niksic"
+        image="https://img.freepik.com/premium-vector/female-user-profile-avatar-is-woman-character-screen-saver-with-emotions_505620-617.jpg"/>
+
+        <div style={{display: 'flex', gap: '15px'}}>
+            <div className={tabInView === "firstName" ? "tab-active" : ""} onClick={() => setTabInView("firstName")}>First name</div>
+            <div className={tabInView === "lastName" ? "tab-active" : ""} onClick={() => setTabInView("lastName")}>Last name</div>
+            <div className={tabInView === "age" ? "tab-active" : ""} onClick={() => setTabInView("age")}>Age</div>
+            <div className={tabInView === "city" ? "tab-active" : ""} onClick={() => setTabInView("city")}>City</div>
         </div>
-      <div style={{display: 'flex', gap: '5px'}}>
-        {listOfUsers.filter(user => user.age >= 28).map((user) => {
-          return <Name key={user.id}
-                       firstName={user.firstName}
-                       lastName={user.lastName}
-                       age={user.age}
-                       city={user.city}/>
-        })}
-      </div>
-      <div>
-        Is every user older than 18? {listOfUsers.every(user => user.age >= 18) ? "Yes" : "No"}
-      </div>
-      <div>
-        Is every user older than 28? {listOfUsers.every(user => user.age >= 28) ? "Yes" : "No"}
-      </div>
+        <div>
+            {tabInView === "firstName" && <UsersSearch
+                title="By first name"
+                list={list}
+                search={(e) => dispatch({type: e?.length === 0 ? '' : 'search-name', data: e})}/>}
+            {tabInView === "lastName" && <UsersSearch title="By last name" list={list} search={(e) => dispatch({type: e?.length === 0 ? '' : 'search-surname', data: e})}/>}
+            {tabInView === "age" && <UsersSearch title="By age" list={list} search={(e) => dispatch({type: e?.length === 0 ? '' : 'search-age', data: e})}/>}
+            {tabInView === "city" && <UsersSearch title="By city" list={list} search={(e) => dispatch({type: e?.length === 0 ? '' : 'search-city', data: e})}/>}
+        </div>
     </div>
   );
 }
