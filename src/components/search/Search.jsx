@@ -1,7 +1,9 @@
 import React, {useEffect} from "react";
 import useDebounce from "../../hooks/useDebounce";
+import { Input } from 'antd';
+const { Search } = Input;
 
-const Search = () => {
+const SearchField = () => {
     const [query, setQuery] = React.useState('');
     const debouncedQuery = useDebounce(query, 300)
 
@@ -10,9 +12,18 @@ const Search = () => {
     }, [debouncedQuery])
 
     return <div>
-        <input value={query} onChange={(e) => setQuery(e.target.value)}/>
+        {/*<input value={query} onChange={(e) => setQuery(e.target.value)}/>*/}
+        <Search
+            placeholder="input search text"
+            size="large"
+            allowClear
+            onSearch={(value) => setQuery(value)}
+            style={{
+                width: 200,
+            }}
+        />
         <div>Search query: {query}</div>
     </div>
 }
 
-export default Search;
+export default SearchField;

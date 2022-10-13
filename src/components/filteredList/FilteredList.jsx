@@ -14,7 +14,7 @@ const FilteredList = ({title, list = [], searchProperty, setList}) => {
         }
     }, [query])
 
-    return <div className="filter-list">
+    return <div className="filter-list" style={{height: '100px'}}>
         <h3>{title}</h3>
         <div>
             <label htmlFor="search-field">Search:</label>
