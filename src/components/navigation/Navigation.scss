@@ -1,0 +1,31 @@
+.navigation-menu{
+  justify-content: flex-end;
+  padding: 0 7.34vw;
+
+  .logo-item{
+    margin-right: auto;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    .logo-img{
+      height: 36px;
+      width: auto;
+    }
+  }
+
+  .item {
+    &.ant-menu-item-active::after{
+      border-bottom: 3px solid #0FC9F4 !important;
+    }
+  }
+
+  .menu-item{
+    color: #2D2F3B;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+}
+
+

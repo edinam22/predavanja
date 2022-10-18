@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import UserCard from "../userCard/UserCard";
 import "./FilteredList.css";
-import {listOfUsers} from "../../constants/constants";
+import {listOfUsers} from "../../../constants/constants";
 
 const FilteredList = ({title, list = [], searchProperty, setList}) => {
     const [query, setQuery] = useState("");
