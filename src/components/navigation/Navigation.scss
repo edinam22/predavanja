@@ -2,6 +2,12 @@
   justify-content: flex-end;
   padding: 0 7.34vw;
 
+  @media screen and (max-width: 1100px) {
+    & {
+      padding: 0 30px;
+    }
+  }
+
   .logo-item{
     margin-right: auto;
     display: inline-flex !important;
@@ -15,16 +21,33 @@
   }
 
   .item {
+    padding-top: 26px !important;
+    padding-bottom: 26px !important;
+
+    &:hover,
+    &.ant-menu-item-selected:hover,
+    &.ant-menu-item-active:hover{
+      color: #2D2F3B !important;
+    }
+
+    &:hover::after,
+    &.ant-menu-item-selected::after,
     &.ant-menu-item-active::after{
+      color: #2D2F3B;
       border-bottom: 3px solid #0FC9F4 !important;
+    }
+
+    &.item-inactive::after{
+      content: none;
     }
   }
 
   .menu-item{
     color: #2D2F3B;
-    font-size: 24px;
+    font-size: 20px;
     text-transform: uppercase;
     font-weight: 600;
+    font-family: "Poppins-Medium", sans-serif;
   }
 }
 

@@ -1,0 +1,42 @@
+.container{
+  display: flex;
+
+  &>div:last-of-type{
+    width: 60%;
+
+    img{
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+
+.product-name{
+  font-family: "Poppins-Bold", sans-serif;
+  font-size: 56px;
+  background-color: #0298CD;
+  display: inline-block;
+  color: white;
+  line-height: 1;
+  padding: 6px 12px 11px;
+}
+
+.title{
+  font-family: "Poppins-Bold", sans-serif;
+  font-size: 56px;
+  line-height: 64px;
+  color: #2D2F3B;
+}
+
+.introductory-text{
+  color: #2D2F3B;
+  font-family: "Poppins-Light", sans-serif;
+  font-size: 18px;
+  line-height: 27px;
+
+  span{
+    color: #0298CD;
+    font-family: "Poppins-Bold", sans-serif;
+  }
+}

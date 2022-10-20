@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu } from 'antd';
+import Button from "../button/Button";
 import Logo from "../../img/Group 2732.svg";
 import clsx from "clsx";
 import "./Navigation.scss";
@@ -30,8 +31,8 @@ const Navigation = () => {
         {items.map(item => <Menu.Item key={item.key} className={clsx("menu-item", "item")}>
             {item.title}
         </Menu.Item>)}
-        <Menu.Item key="test-free" className={"item"}>
-            Testirajte besplatno
+        <Menu.Item key="test-free" className={"item item-inactive"}>
+            <Button label="Testirajte besplatno" onClick={() => console.log("Testiraj besplatno event")}/>
         </Menu.Item>
     </Menu>
 }
