@@ -27,14 +27,14 @@
     &:hover,
     &.ant-menu-item-selected:hover,
     &.ant-menu-item-active:hover{
-      color: #2D2F3B !important;
+      color: var(--text-color) !important;
     }
 
     &:hover::after,
     &.ant-menu-item-selected::after,
     &.ant-menu-item-active::after{
-      color: #2D2F3B;
-      border-bottom: 3px solid #0FC9F4 !important;
+      color: var(--text-color);
+      border-bottom: 3px solid var(--primary-color) !important;
     }
 
     &.item-inactive::after{
@@ -43,7 +43,7 @@
   }
 
   .menu-item{
-    color: #2D2F3B;
+    color: var(--text-color);
     font-size: 20px;
     text-transform: uppercase;
     font-weight: 600;
