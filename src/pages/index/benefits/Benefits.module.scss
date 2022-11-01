@@ -1,72 +1,29 @@
 .container{
   display: flex;
-  padding-top: 66px;
+  background-color: var(--section-background);
+  padding: 45px 12.5vw 66px;
 
-  @media screen and (max-width: 1105px) {
+  @media screen and (max-width: 1400px) {
     & {
-      flex-direction: column-reverse;
+      padding-left: 7.5vw;
+      padding-right: 7.5vw;
     }
   }
 
-  &>div:first-of-type{
-    width: 50%;
-    padding-left: 14.5vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    @media screen and (max-width: 1300px) {
-      & {
-        width: 45%;
-        padding-left: 7.34vw;
-      }
-    }
-
-    @media screen and (max-width: 1105px) {
-      & {
-        width: 100%;
-        padding: 30px;
-      }
-    }
-  }
-
-  &>div:last-of-type{
-    width: 50%;
-
-    @media screen and (max-width: 1300px) {
-      & {
-        width: 55%;
-      }
-    }
-
-    @media screen and (max-width: 1105px) {
-      & {
-        width: 60%;
-        margin: 0 auto;
-      }
-    }
-
-    @media screen and (max-width: 1105px) {
-      & {
-        width: 80%;
-        margin: 0 auto;
-      }
-    }
-
-    img{
-      width: 100%;
-      height: auto;
+  @media screen and (max-width: 1050px) {
+    & {
+      padding-left: 30px;
+      padding-right: 30px;
     }
   }
 }
 
-
-
 .title{
   font-family: "Poppins-Bold", sans-serif;
-  font-size: 56px;
-  line-height: 64px;
+  font-size: 46px;
+  line-height: 144px;
   color: var(--text-color);
+  text-align: center;
 
   @media screen and (max-width: 1300px) {
     & {
@@ -76,26 +33,24 @@
   }
 }
 
-.introductory-text{
-  color: var(--text-color);
-  font-family: "Poppins-Light", sans-serif;
-  font-size: 18px;
-  line-height: 27px;
+.list-container{
+  display: flex;
+  gap: 5vw;
 
-  @media screen and (max-width: 1300px) {
+  @media screen and (max-width: 1400px) {
     & {
-      font-size: 16px;
-      line-height: 24px;
+      gap: 4vw;
     }
   }
 
-  span{
-    color: var(--primary-color);
-    font-family: "Poppins-Bold", sans-serif;
+  &>div{
+    width: 30%;
   }
-}
 
-.input-container{
-  width: 278px;
-  padding-bottom: 20px;
+  @media screen and (max-width: 900px) {
+    & {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
 }

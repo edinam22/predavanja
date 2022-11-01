@@ -4,6 +4,7 @@ import IntroductionImg from "../../../img/introduction/Group 1174.png";
 import Button from "../../../components/button/Button";
 import InputField from "../../../components/inputField/InputField";
 import TextWithBackground from "../../../components/textWithBackground/TextWithBackground";
+import ButtonRounded from "../../../components/buttonRounded/ButtonRounded";
 
 const Introduction = () => {
     return <section className={classes['container']}>

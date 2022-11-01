@@ -3,16 +3,26 @@ import Navigation from "../components/navigation/Navigation";
 import Introduction from "./index/introduction/Introduction";
 import WhyAway from "./index/whyAway/WhyAway";
 import Benefits from "./index/benefits/Benefits";
+import classes from "./Index.module.scss";
+import Footer from "../components/footer/Footer";
+import MovieCard from "../components/movieCard/MovieCard";
 
 const Index = () => {
-    return <div>
-        <div>
+    return <div className={classes['container']}>
+        <div className={classes['navigation']}>
             <Navigation/>
         </div>
-        <div>
+        <div className={classes['page-body']}>
             <Introduction/>
             <WhyAway/>
+            <div style={{
+                paddingTop: '50px',
+                paddingBottom: '50px'
+            }}>
+            <MovieCard/>
+            </div>
             <Benefits/>
+            <Footer/>
         </div>
     </div>
 }

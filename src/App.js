@@ -5,8 +5,8 @@ import Index from "./pages/Index";
 //  Navigation
 //  Footer
 //  BenefitCard
-//  ButtonRounded
 //  Button
+//  ButtonRounded
 //  PricingCard
 
 function App() {
