@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu } from 'antd';
-import Button from "../button/Button";
+import Button from "../buttons/button/Button";
 import Logo from "../../img/Group 2732.svg";
 import clsx from "clsx";
 import "./Navigation.scss";

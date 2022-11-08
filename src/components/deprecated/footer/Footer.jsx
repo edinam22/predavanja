@@ -1,8 +1,8 @@
 import React from 'react';
-import FacebookIcon from "../../img/footer/facebook.svg";
-import InstagramIcon from "../../img/footer/instagram.svg";
-import LinkedinIcon from "../../img/footer/linkedin.svg";
-import YoutubeIcon from "../../img/footer/youtube.svg";
+import FacebookIcon from "../../../img/footer/facebook.svg";
+import InstagramIcon from "../../../img/footer/instagram.svg";
+import LinkedinIcon from "../../../img/footer/linkedin.svg";
+import YoutubeIcon from "../../../img/footer/youtube.svg";
 import classes from "./Footer.module.scss";
 
 const Footer = () => {

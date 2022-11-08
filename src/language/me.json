@@ -1,0 +1,11 @@
+{
+  "navigation": {
+    "clients": "Klijenti",
+    "vehicles": "Vozila",
+    "reservations": "Rezervacije",
+    "check-search": "Provjeri parametre",
+    "check-modal": "Provjeri modal",
+    "go-to-page-1": "Idi na stranicu 1"
+  },
+  "hello": "Cao {name}!"
+}

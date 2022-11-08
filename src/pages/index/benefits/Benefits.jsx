@@ -1,10 +1,10 @@
 import React from 'react';
 import classes from "./Benefits.module.scss";
-import TextWithBackground from "../../../components/textWithBackground/TextWithBackground";
+import TextWithBackground from "../../../components/deprecated/textWithBackground/TextWithBackground";
 import ApplicationImg from "../../../img/benefits/aplikacija.svg";
 import AutomatImg from "../../../img/benefits/automatizacija.svg";
 import OrgImg from "../../../img/benefits/organizacija.svg";
-import BenefitCard from "../../../components/benefitCard/BenefitCard";
+import BenefitCard from "../../../components/deprecated/benefitCard/BenefitCard";
 
 const Benefits = () => {
     const list = [

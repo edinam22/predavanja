@@ -1,0 +1,11 @@
+{
+  "navigation": {
+    "clients": "Clients",
+    "vehicles": "Vehicles",
+    "reservations": "Reservations",
+    "check-search": "Check search params",
+    "check-modal": "Check modal",
+    "go-to-page-1": "Go to page 1"
+  },
+  "hello": "Hello {name}!"
+}
