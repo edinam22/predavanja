@@ -1,10 +1,10 @@
 import React from 'react';
 import classes from "./Introduction.module.scss";
-import IntroductionImg from "../../../img/introduction/Group 1174.png";
-import Button from "../../../components/buttons/button/Button";
-import InputField from "../../../components/formFields/inputField/InputField";
-import TextWithBackground from "../../../components/deprecated/textWithBackground/TextWithBackground";
-import ButtonRounded from "../../../components/buttons/buttonRounded/ButtonRounded";
+import IntroductionImg from "../../../../img/introduction/Group 1174.png";
+import Button from "../../../../components/buttons/button/Button";
+import InputField from "../../../../components/formFields/inputField/InputField";
+import TextWithBackground from "../../../../components/deprecated/textWithBackground/TextWithBackground";
+import ButtonRounded from "../../../../components/buttons/buttonRounded/ButtonRounded";
 
 const Introduction = () => {
     return <section className={classes['container']}>

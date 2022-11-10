@@ -1,5 +1,5 @@
 import React from 'react';
-import {movies} from "../constants/constants";
+import {movies} from "../../constants/constants";
 import {Link, Outlet} from 'react-router-dom';
 
 const Movies = () => {

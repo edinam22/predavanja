@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import {movies} from "../constants/constants";
+import {movies} from "../../constants/constants";
 
 const SingleMovie = () => {
     const [data, setData] = useState(null);

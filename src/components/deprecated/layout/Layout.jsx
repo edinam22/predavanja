@@ -1,7 +1,7 @@
 import React from "react";
 import SelectedUser from "../selectedUser/SelectedUser";
 import TableOfUsers from "../tableOfUsers/TableOfUsers";
-import SearchField from "../search/Search";
+import SearchField from "../../search/Search";
 
 const Layout = () => {
 

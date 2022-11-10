@@ -8,14 +8,22 @@ import {
 
 import en from "../language/en.json";
 import me from "../language/me.json";
+import {userRoles} from "../config/config";
 
 setTranslations({ en, me });
 setDefaultLanguage('en');
 
 const UserContext = createContext({});
 
+//employee
+//user
+
 const UserProvider = ({children}) => {
-    const [userData, setUserData] = useState(null);
+    const [userData, setUserData] = useState({
+        firstName: 'Marko',
+        lastName: 'Markovic',
+        role: userRoles.EMPLOYEE
+    });
     const [refreshLanguage, setRefreshLanguage] = useState(0);
 
     const data = {

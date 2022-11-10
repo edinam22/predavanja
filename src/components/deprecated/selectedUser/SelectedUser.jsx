@@ -1,6 +1,6 @@
 import React from "react";
 import UserCard from "../userCard/UserCard";
-import Table from "../table/Table";
+import Table from "../../table/Table";
 import {listOfMovies} from "../../../constants/constants";
 import {useAppData} from "../../../context/AppContext";
 

@@ -1,11 +1,37 @@
 {
+  "common": {
+    "language": "Language",
+    "options": "Options",
+    "preview": "Preview"
+  },
   "navigation": {
+    "add-new-user": "Add new user",
+    "add-new-vehicle": "Add new vehicle",
+    "add-new-reservation": "Add new reservation",
+    "logout": "Logout"
+  },
+  "language": {
+    "eng": "English",
+    "mne": "Montenegrin"
+  },
+  "sidebar": {
     "clients": "Clients",
     "vehicles": "Vehicles",
-    "reservations": "Reservations",
-    "check-search": "Check search params",
-    "check-modal": "Check modal",
-    "go-to-page-1": "Go to page 1"
+    "reservations": "Reservations"
   },
-  "hello": "Hello {name}!"
+  "dashboard": {
+    "welcome": "Welcome"
+  },
+  "clients": {
+    "placeholder": "Search clients",
+    "add-client": "Add client",
+    "edit-client": "Edit client",
+    "name": "Name",
+    "number": "Passport number",
+    "phone": "Phone",
+    "email": "Email",
+    "first-reservation": "Date of first reservation",
+    "last-reservation": "Date of last reservation",
+    "note": "Note"
+  }
 }

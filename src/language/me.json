@@ -1,11 +1,28 @@
 {
+  "common": {
+    "language": "Jezik",
+    "options": "Opcije"
+  },
   "navigation": {
+    "add-new-user": "Dodaj novog korisnika",
+    "add-new-vehicle": "Dodaj novo vozilo",
+    "add-new-reservation": "Dodaj novu rezervaciju",
+    "logout": "Izloguj se"
+  },
+  "language": {
+    "eng": "Engleski",
+    "mne": "Crnogorski"
+  },
+  "sidebar": {
     "clients": "Klijenti",
     "vehicles": "Vozila",
-    "reservations": "Rezervacije",
-    "check-search": "Provjeri parametre",
-    "check-modal": "Provjeri modal",
-    "go-to-page-1": "Idi na stranicu 1"
+    "reservations": "Rezervacije"
   },
-  "hello": "Cao {name}!"
+  "dashboard": {
+    "welcome": "Dobrodosli"
+  },
+  "clients": {
+    "placeholder": "Pretrazi klijente",
+    "add-client": "Dodaj klijenta"
+  }
 }
