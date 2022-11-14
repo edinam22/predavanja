@@ -9,9 +9,19 @@ import {t} from 'react-switch-lang';
 import {Link} from "react-router-dom";
 import Language from "./language/Language";
 import {userRoles} from "../../config/config";
+import {useModal} from "../../contexts/ModalContext";
+import ClientForm from "../../pages/clients/clientForm/ClientForm";
 
 const Navigation = () => {
     const {userData} = useUser();
+    const {open} = useModal()
+
+    const addClient = () => {
+        open({
+            title: t('clients.add-client'),
+            content: <ClientForm type={"add"}/>
+        })
+    }
 
     return <Menu mode="horizontal"
                  defaultSelectedKeys={['home']}
@@ -22,7 +32,7 @@ const Navigation = () => {
         <Menu.Item className={"item item-inactive"}>{userData?.firstName} {userData?.lastName}</Menu.Item>
         {userData?.role === userRoles.EMPLOYEE ?
             <Menu.SubMenu className={"item item-inactive"} title={t('common.options')}>
-                <Menu.Item>{t('navigation.add-new-user')}</Menu.Item>
+                <Menu.Item onClick={() => addClient()}>{t('navigation.add-new-user')}</Menu.Item>
                 <Menu.Item>{t('navigation.add-new-vehicle')}</Menu.Item>
                 <Menu.Item><Link to={"#"}>{t('navigation.add-new-reservation')}</Link></Menu.Item>
                 <Menu.Item>

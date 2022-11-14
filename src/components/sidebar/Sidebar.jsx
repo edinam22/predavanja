@@ -3,6 +3,7 @@ import { Menu } from 'antd';
 import {t} from 'react-switch-lang';
 import { useNavigate } from "react-router-dom";
 import {routes} from "../../routes/routes";
+import "./Sidebar.scss";
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -31,6 +32,7 @@ const Sidebar = () => {
             width: 256,
         }}
         items={items}
+        className={"__sidebar"}
     />
 }
 

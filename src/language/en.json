@@ -2,7 +2,11 @@
   "common": {
     "language": "Language",
     "options": "Options",
-    "preview": "Preview"
+    "preview": "Preview",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel":  "Cancel"
   },
   "navigation": {
     "add-new-user": "Add new user",
@@ -26,12 +30,28 @@
     "placeholder": "Search clients",
     "add-client": "Add client",
     "edit-client": "Edit client",
-    "name": "Name",
-    "number": "Passport number",
-    "phone": "Phone",
+    "name": "Full name",
+    "number": "Id card/passport number",
+    "phone": "Phone number",
     "email": "Email",
     "first-reservation": "Date of first reservation",
     "last-reservation": "Date of last reservation",
-    "note": "Note"
+    "note": "Note",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "country": "Country",
+    "placeholders": {
+      "firstName": "Insert first name",
+      "lastName": "Insert last name",
+      "number": "Insert number",
+      "email": "Insert email",
+      "country": "Select country"
+    }
+  },
+  "validation": {
+    "required": "Field required!",
+    "invalid": "Field invalid!",
+    "min": "Field must have at least {number} characters!",
+    "max": "Field cannot have more than {number} characters!"
   }
 }

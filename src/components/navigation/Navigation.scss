@@ -1,14 +1,9 @@
 .navigation-menu{
   justify-content: flex-end;
-  padding: 0 7.34vw;
+  padding: 0 10px;
   background-color: transparent;
   backdrop-filter: blur(30px);
-
-  @media screen and (max-width: 1100px) {
-    & {
-      padding: 0 30px;
-    }
-  }
+  border-bottom-color: var(--secondary-color);
 
   .logo-item{
     margin-right: auto;
@@ -23,8 +18,8 @@
   }
 
   .item {
-    padding-top: 26px !important;
-    padding-bottom: 26px !important;
+    padding-top: 22px !important;
+    padding-bottom: 22px !important;
 
     &:hover,
     &.ant-menu-item-selected:hover,
@@ -53,4 +48,9 @@
   }
 }
 
+.navigation-submenu-item{
+  &>div{
+    padding: 0 !important;
+  }
+}
 

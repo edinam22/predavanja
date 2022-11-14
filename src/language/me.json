@@ -1,7 +1,12 @@
 {
   "common": {
     "language": "Jezik",
-    "options": "Opcije"
+    "options": "Opcije",
+    "preview": "Pregled",
+    "edit": "Izmijeni",
+    "delete": "Obrisi",
+    "save": "Sacuvaj",
+    "cancel":  "Obrisi"
   },
   "navigation": {
     "add-new-user": "Dodaj novog korisnika",
@@ -23,6 +28,20 @@
   },
   "clients": {
     "placeholder": "Pretrazi klijente",
-    "add-client": "Dodaj klijenta"
+    "add-client": "Dodaj klijenta",
+    "edit-client": "Izmijeni klijenta",
+    "name": "Ime i prezime",
+    "number": "Broj licne karte/pasosa",
+    "phone": "Broj telefona",
+    "email": "Email",
+    "first-reservation": "Datum prve rezervacije",
+    "last-reservation": "Datum poslednje rezervacije",
+    "note": "Napomena"
+  },
+  "validation": {
+    "required": "Polje je obavezno!",
+    "invalid": "Polje je nevalidno!",
+    "min": "Polje mora imati vise od {number} karaktera!",
+    "max": "Polje ne moze imati manje od {number} karaktera!"
   }
 }
