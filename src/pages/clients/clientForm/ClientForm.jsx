@@ -9,9 +9,43 @@ import {useForm} from 'react-hook-form';
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import {regex} from "../../../utils/regex";
+import {useMutation, useQuery, useQueryClient} from "react-query";
+import { message } from 'antd';
 
 const ClientForm = ({type, id, cancel}) => {
+    const queryClient = useQueryClient();
     const [countries, setCountries] = useState([])
+
+    const add = useMutation((data) => clientService.add(data)
+        .then(r => {
+            message.success(t('clients.success-add'));
+            queryClient.invalidateQueries("")
+        })
+        .catch(err => {
+            console.log(err?.response?.data)
+            message.error(t('error-message.api'))
+        }))
+
+    const edit = useMutation((data) => clientService.edit(data)
+        .then(r => {
+            message.success(t('clients.success-edit'));
+            queryClient.invalidateQueries("")
+        })
+        .catch(err => {
+            console.log(err?.response?.data)
+            message.error(t('error-message.api'))
+        }))
+
+    const get = (id) => {
+        return clientService.getClientById(id)
+            .then(res => {
+                reset({
+                    ...res,
+                    country: res?.country?.code
+                })
+            })
+            .catch(err => message.error(t('error-message.api')))
+    }
 
     const schema = yup.object().shape({
         firstName: yup.string().trim()
@@ -39,6 +73,11 @@ const ClientForm = ({type, id, cancel}) => {
 
     const onSubmit = (data) => {
         console.log(data)
+        if(type === "edit"){
+            edit.mutate(data)
+        }else{
+            add.mutate(data)
+        }
     }
 
     useEffect(() => {
@@ -50,6 +89,10 @@ const ClientForm = ({type, id, cancel}) => {
             })
         }
     }, [type, id])
+
+    useQuery(['client-single', id], () => get(id), {
+        enabled: Boolean(type !== 'add' && id)
+    })
 
     useEffect(() => {
         const res = countryService.getAll();

@@ -1,6 +1,7 @@
 //this is an example for client list response
 import ClientModel from "./models/ClientModel";
 import {userRoles} from "../config/config";
+import {requestInstance} from "../config/requestInstance";
 
 export const clients = [
     {
@@ -96,30 +97,52 @@ export const clients = [
 
 class ClientService {
     //apis used for client requests
-    api = {}
+    api = {
+        clients: '/clients'
+    }
 
     //parameters used in apis
     params = {}
 
     // for now this returns data for client
     getClientById(id){
+        // return requestInstance.get(`${this.api.clients}/${id}`)
+        //     .then(r => new ClientModel(r.data))
+        //     .catch(err => Promise.reject(err))
         const client = clients.find(item => item.id === id);
         return new ClientModel(client)
     }
 
     //for now this returns list of users
     getAll(){
+        // return requestInstance.get(this.api.clients)
+        //     .then(r => new ClientModel(r.data))
+        //     .catch(err => Promise.reject(err))
         return clients.map(item => new ClientModel(item))
     }
 
     add(data){
         console.log("add")
         console.log(data)
+        const formData = {...data};
+        return requestInstance.post(this.api.clients)
+            .then(r => new ClientModel(r.data))
+            .catch(err => Promise.reject(err))
     }
 
     edit(data){
         console.log("edit")
         console.log(data)
+        const formData = {...data};
+        return requestInstance.put(this.api.clients)
+            .then(r => new ClientModel(r.data))
+            .catch(err => Promise.reject(err))
+    }
+
+    delete(id){
+        return requestInstance.delete(`${this.api.clients}/${id}`)
+            .then(r => new ClientModel(r.data))
+            .catch(err => Promise.reject(err))
     }
 
 }

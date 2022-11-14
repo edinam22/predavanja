@@ -8,12 +8,18 @@ import classes from "./Clients.module.scss";
 import Button from "../../components/buttons/button/Button";
 import {clientService} from "../../services/ClientService";
 import TableButtonGroup from "../../components/buttons/tableButtonGroup/TableButtonGroup";
+import {useQuery} from "react-query";
 
 
 const Clients = () => {
     const {open, close} = useModal()
     const [query, setQuery] = useState("")
     const [rows, setRows] = useState([]);
+
+    // const {data: rows} = useQuery(['clients'],
+    //     () => clientService.getAll(), {
+    //     enabled: true
+    // })
 
     const openClientModal = (type, id = null) => {
         //type - add ,edit, preview

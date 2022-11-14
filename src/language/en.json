@@ -18,6 +18,9 @@
     "eng": "English",
     "mne": "Montenegrin"
   },
+  "error-message": {
+    "api": "There has been an error!"
+  },
   "sidebar": {
     "clients": "Clients",
     "vehicles": "Vehicles",
@@ -40,6 +43,9 @@
     "firstName": "First name",
     "lastName": "Last name",
     "country": "Country",
+    "success-add": "Client added successfully!",
+    "success-edit": "Client edited successfully!",
+    "success-delete": "Client deleted successfully!",
     "placeholders": {
       "firstName": "Insert first name",
       "lastName": "Insert last name",
