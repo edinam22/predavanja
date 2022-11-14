@@ -12,6 +12,7 @@ import {storageKeys, userRoles} from "../config/config";
 import {storageService} from "../services/StorageService";
 import {useNavigate} from "react-router-dom";
 import {clientService} from "../services/ClientService";
+import {routes} from "../routes/routes";
 
 setTranslations({ en, me });
 setDefaultLanguage('en');
@@ -23,16 +24,20 @@ const UserContext = createContext({});
 
 const UserProvider = ({children}) => {
     const navigate = useNavigate();
-    const [userData, setUserData] = useState({
-        firstName: 'Marko',
-        lastName: 'Markovic',
-        role: userRoles.EMPLOYEE
-    });
+    const [userData, setUserData] = useState({});
     const [refreshLanguage, setRefreshLanguage] = useState(0);
 
     useEffect(() => {
         if(storageService.exists(storageKeys.USER)){
-            clientService.getClientById(storageService.get(storageKeys.USER))
+            const userId = storageService.get(storageKeys.USER)
+
+            const currentUser = clientService.getClientById(parseInt(userId, 10))
+
+            if(currentUser?.id){
+                setUserData(currentUser)
+            }else{
+                navigate(routes.LOGIN.path)
+            }
         }else{
             navigate(routes.LOGIN.path)
         }

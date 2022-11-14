@@ -6,15 +6,23 @@ import clsx from "clsx";
 import "./Navigation.scss";
 import {useUser} from "../../contexts/UserContext";
 import {t} from 'react-switch-lang';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Language from "./language/Language";
 import {userRoles} from "../../config/config";
 import {useModal} from "../../contexts/ModalContext";
 import ClientForm from "../../pages/clients/clientForm/ClientForm";
+import {storageService} from "../../services/StorageService";
+import {routes} from "../../routes/routes";
 
 const Navigation = () => {
+    const navigate = useNavigate();
     const {userData} = useUser();
     const {open} = useModal()
+
+    const logout = () => {
+        storageService.clear()
+        navigate(routes.LOGIN.path)
+    }
 
     const addClient = () => {
         open({
@@ -45,7 +53,7 @@ const Navigation = () => {
             </Menu.Item>
         }
         <Menu.Item key="test-free" className={"item item-inactive"}>
-            <Button label={t('navigation.logout')} onClick={() => console.log("Logout")}/>
+            <Button label={t('navigation.logout')} onClick={() => logout()}/>
         </Menu.Item>
     </Menu>
 }
