@@ -13,21 +13,25 @@ import {useModal} from "../../contexts/ModalContext";
 import ClientForm from "../../pages/clients/clientForm/ClientForm";
 import {storageService} from "../../services/StorageService";
 import {routes} from "../../routes/routes";
+import {authService} from "../../services/AuthService";
 
 const Navigation = () => {
     const navigate = useNavigate();
     const {userData} = useUser();
-    const {open} = useModal()
+    const {open, close} = useModal()
 
     const logout = () => {
-        storageService.clear()
-        navigate(routes.LOGIN.path)
+        authService.logout()
+            .then(r => {
+                storageService.clear()
+                navigate(routes.LOGIN.path)
+            })
     }
 
     const addClient = () => {
         open({
             title: t('clients.add-client'),
-            content: <ClientForm type={"add"}/>
+            content: <ClientForm type={"add"} cancel={close}/>
         })
     }
 

@@ -29,15 +29,13 @@ const UserProvider = ({children}) => {
 
     useEffect(() => {
         if(storageService.exists(storageKeys.USER)){
-            const userId = storageService.get(storageKeys.USER)
-
-            const currentUser = clientService.getClientById(parseInt(userId, 10))
-
-            if(currentUser?.id){
-                setUserData(currentUser)
-            }else{
-                navigate(routes.LOGIN.path)
-            }
+            clientService.getCurrentUserData()
+                .then(r => {
+                    setUserData(r)
+                })
+                .catch(err => {
+                    navigate(routes.LOGIN.path)
+                })
         }else{
             navigate(routes.LOGIN.path)
         }

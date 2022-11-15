@@ -1,6 +1,6 @@
 export const userRoles = {
-    EMPLOYEE: 'employee',
-    USER: 'user'
+    EMPLOYEE: 1,
+    USER: 2
 }
 
 export const storageKeys = {

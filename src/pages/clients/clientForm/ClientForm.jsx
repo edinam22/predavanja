@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import InputField from "../../../components/formFields/inputField/InputField";
 import {clientService} from "../../../services/ClientService";
 import {t} from 'react-switch-lang';
@@ -10,16 +10,17 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import {regex} from "../../../utils/regex";
 import {useMutation, useQuery, useQueryClient} from "react-query";
-import { message } from 'antd';
+import {message} from 'antd';
 
 const ClientForm = ({type, id, cancel}) => {
     const queryClient = useQueryClient();
-    const [countries, setCountries] = useState([])
+    // const [countries, setCountries] = useState([])
 
     const add = useMutation((data) => clientService.add(data)
         .then(r => {
             message.success(t('clients.success-add'));
-            queryClient.invalidateQueries("")
+            queryClient.invalidateQueries("clients")
+            cancel()
         })
         .catch(err => {
             console.log(err?.response?.data)
@@ -29,7 +30,8 @@ const ClientForm = ({type, id, cancel}) => {
     const edit = useMutation((data) => clientService.edit(data)
         .then(r => {
             message.success(t('clients.success-edit'));
-            queryClient.invalidateQueries("")
+            queryClient.invalidateQueries("clients")
+            cancel()
         })
         .catch(err => {
             console.log(err?.response?.data)
@@ -39,10 +41,18 @@ const ClientForm = ({type, id, cancel}) => {
     const get = (id) => {
         return clientService.getClientById(id)
             .then(res => {
-                reset({
-                    ...res,
-                    country: res?.country?.code
-                })
+                reset(res)
+            })
+            .catch(err => message.error(t('error-message.api')))
+    }
+
+    const getCountries = () => {
+        return countryService.getAll()
+            .then(res => {
+                return res.map(item => ({
+                    label: item?.name,
+                    value: item?.id
+                }));
             })
             .catch(err => message.error(t('error-message.api')))
     }
@@ -80,28 +90,14 @@ const ClientForm = ({type, id, cancel}) => {
         }
     }
 
-    useEffect(() => {
-        if(type !== 'add' && id){
-            const res = clientService.getClientById(id)
-            reset({
-                ...res,
-                country: res?.country?.code
-            })
-        }
-    }, [type, id])
-
     useQuery(['client-single', id], () => get(id), {
         enabled: Boolean(type !== 'add' && id)
     })
 
-    useEffect(() => {
-        const res = countryService.getAll();
-        const list = res.map(item => ({
-            label: item?.name,
-            value: item?.code
-        }))
-        setCountries(list)
-    }, [])
+    const {data: countries} = useQuery(['countries'], () => getCountries(), {
+        enabled: true,
+        initialData: []
+    })
 
     useEffect(() => {
         console.log(errors)
@@ -137,7 +133,7 @@ const ClientForm = ({type, id, cancel}) => {
                         control={control}
                         placeholder={t('clients.placeholders.number')}
                         error={errors?.idNumber?.message}
-                        disabled={type === 'preview'}
+                        disabled={type !== 'add'}
             />
             <InputField label={t('clients.phone')}
                         name="phone"
@@ -151,7 +147,7 @@ const ClientForm = ({type, id, cancel}) => {
                         control={control}
                         placeholder={t('clients.placeholders.email')}
                         error={errors?.email?.message}
-                        disabled={type === 'preview'}
+                        disabled={type !== 'add'}
             />
             {type && type !== 'preview' &&
             <FormButtonGroup

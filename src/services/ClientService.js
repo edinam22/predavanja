@@ -1,146 +1,71 @@
-//this is an example for client list response
 import ClientModel from "./models/ClientModel";
-import {userRoles} from "../config/config";
 import {requestInstance} from "../config/requestInstance";
-
-export const clients = [
-    {
-        id: 1,
-        firstName: 'Adebayo',
-        lastName: 'Danell',
-        identificationNumber: '2342',
-        phoneNumber: '056123123',
-        email: 'adebayo.danell@gmail.com',
-        dateOfFirstReservation: '01.01.2022.',
-        dateOfLastReservation: '10.02.2022.',
-        description: 'Some description...',
-        country: {
-            id: 1,
-            name: 'Montenegro',
-            code: 'mne',
-        },
-        role: userRoles.EMPLOYEE
-    },
-    {
-        id: 2,
-        firstName: 'Eutychios',
-        lastName: 'Mendelsohn',
-        identificationNumber: '2342',
-        phoneNumber: '056123123',
-        email: 'eutychios.mendelsohn@gmail.com',
-        dateOfFirstReservation: '01.01.2022.',
-        dateOfLastReservation: '10.02.2022.',
-        description: 'Some description...',
-        country: {
-            id: 5,
-            name: 'Bosnia and Herzegovina',
-            code: 'bih',
-        },
-        role: userRoles.EMPLOYEE
-    },
-    {
-        id: 3,
-        firstName: 'Seppe',
-        lastName: 'Leyton',
-        identificationNumber: '2342',
-        phoneNumber: '056123123',
-        email: 'seppe.leyton@gmail.com',
-        dateOfFirstReservation: '01.01.2022.',
-        dateOfLastReservation: '10.02.2022.',
-        description: 'Some description...',
-        country: {
-            id: 3,
-            name: 'Serbia',
-            code: 'srb',
-        },
-        role: userRoles.USER
-    },
-    {
-        id: 4,
-        firstName: 'Jeb',
-        lastName: 'Best',
-        identificationNumber: '2342',
-        phoneNumber: '056123123',
-        email: 'jeb.best@gmail.com',
-        dateOfFirstReservation: '01.01.2022.',
-        dateOfLastReservation: '10.02.2022.',
-        description: 'Some description...',
-        country: {
-            id: 2,
-            name: 'USA',
-            code: 'usa',
-        },
-        role: userRoles.USER
-    },
-    {
-        id: 5,
-        firstName: 'Gratianus',
-        lastName: 'Kwan',
-        identificationNumber: '2342',
-        phoneNumber: '056123123',
-        email: 'gratianus.kwan@gmail.com',
-        dateOfFirstReservation: '01.01.2022.',
-        dateOfLastReservation: '10.02.2022.',
-        description: 'Some description...',
-        country: {
-            id: 2,
-            name: 'USA',
-            code: 'usa',
-        },
-        role: userRoles.EMPLOYEE
-    },
-
-]
-
-//TODO
-// implement apis when we get to requests
 
 class ClientService {
     //apis used for client requests
     api = {
-        clients: '/clients'
+        account: '/account',
+        clients: '/customers',
+        users: '/users',
     }
 
     //parameters used in apis
-    params = {}
-
-    // for now this returns data for client
-    getClientById(id){
-        // return requestInstance.get(`${this.api.clients}/${id}`)
-        //     .then(r => new ClientModel(r.data))
-        //     .catch(err => Promise.reject(err))
-        const client = clients.find(item => item.id === id);
-        return new ClientModel(client)
+    params = {
+        search: 'search='
     }
 
-    //for now this returns list of users
-    getAll(){
-        // return requestInstance.get(this.api.clients)
-        //     .then(r => new ClientModel(r.data))
-        //     .catch(err => Promise.reject(err))
-        return clients.map(item => new ClientModel(item))
+    getCurrentUserData(){
+        return requestInstance.get(this.api.account)
+            .then(r => {
+                return new ClientModel(r.data)
+            })
+            .catch(err => Promise.reject(err))
+    }
+
+    // this returns data for client
+    getClientById(id){
+        return requestInstance.get(`${this.api.users}/${id}`)
+            .then(r => new ClientModel(r.data))
+            .catch(err => Promise.reject(err))
+    }
+
+    //this returns list of all users
+    getAll(query){
+        // if search query is passed to method, add it to api
+        const queryParam = query?.length > 0 ? `?${this.params.search}${query}` : '';
+        return requestInstance.get(`${this.api.clients}${queryParam}`)
+            .then(r => r?.data?.data?.map(item => new ClientModel(item)))
+            .catch(err => Promise.reject(err))
     }
 
     add(data){
-        console.log("add")
-        console.log(data)
-        const formData = {...data};
-        return requestInstance.post(this.api.clients)
+        const formData = {
+            "first_name": data?.firstName,
+            "last_name": data?.lastName,
+            "country_id": data?.country,
+            "passport_number": data?.idNumber,
+            "phone_number": data?.phone,
+            "email": data?.email
+        };
+        return requestInstance.post(this.api.users, formData)
             .then(r => new ClientModel(r.data))
             .catch(err => Promise.reject(err))
     }
 
     edit(data){
-        console.log("edit")
-        console.log(data)
-        const formData = {...data};
-        return requestInstance.put(this.api.clients)
+        const formData = {
+            "first_name": data?.firstName,
+            "last_name": data?.lastName,
+            "country_id": data?.country,
+            "phone_number": data?.phone
+        };
+        return requestInstance.put(`${this.api.users}/${data?.id}`, formData)
             .then(r => new ClientModel(r.data))
             .catch(err => Promise.reject(err))
     }
 
     delete(id){
-        return requestInstance.delete(`${this.api.clients}/${id}`)
+        return requestInstance.delete(`${this.api.users}/${id}`)
             .then(r => new ClientModel(r.data))
             .catch(err => Promise.reject(err))
     }

@@ -17,7 +17,9 @@ const SearchField = ({placeholder, onSearch, className = ''}) => {
             placeholder={placeholder}
             size="large"
             allowClear
-            onSearch={(value) => setQuery(value)}
+            onSearch={(value) => {
+                setQuery(value)
+            }}
             className="__search-field"
         />
     </div>

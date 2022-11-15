@@ -14,12 +14,12 @@ import {useQuery} from "react-query";
 const Clients = () => {
     const {open, close} = useModal()
     const [query, setQuery] = useState("")
-    const [rows, setRows] = useState([]);
 
-    // const {data: rows} = useQuery(['clients'],
-    //     () => clientService.getAll(), {
-    //     enabled: true
-    // })
+    const {data: rows} = useQuery(['clients', query],
+        () => clientService.getAll(query), {
+        enabled: true,
+            initialData: []
+    })
 
     const openClientModal = (type, id = null) => {
         //type - add ,edit, preview
@@ -39,10 +39,7 @@ const Clients = () => {
                     : t('common.preview'),
             content: <ClientForm type={type}
                                  id={id}
-                                 cancel={close}
-                                    onSuccess={() => {
-                                        console.log("refresh data")
-                                    }}/>
+                                 cancel={close}/>
         })
     }
 
@@ -69,16 +66,6 @@ const Clients = () => {
             key: 'email',
         },
         {
-            title: t('clients.first-reservation'),
-            dataIndex: 'firstReservationDate',
-            key: 'firstReservationDate',
-        },
-        {
-            title: t('clients.last-reservation'),
-            dataIndex: 'lastReservationDate',
-            key: 'lastReservationDate',
-        },
-        {
             title: t('clients.note'),
             dataIndex: 'note',
             key: 'note',
@@ -99,13 +86,12 @@ const Clients = () => {
 },
     ];
 
-    useEffect(() => {
-        setRows(clientService.getAll())
-    }, [])
 
     return <>
         <div className={classes['page-head']}>
-            <SearchField className={classes['search']} placeholder={t('clients.placeholder')} onSearch={(e) => setQuery(e)}/>
+            <SearchField className={classes['search']} placeholder={t('clients.placeholder')} onSearch={(e) => {
+                setQuery(e)
+            }}/>
             <Button label={t('clients.add-client')} onClick={(e) => openClientModal('add')}/>
         </div>
         <div className={classes['table']}>
